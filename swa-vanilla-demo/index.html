@@ -174,7 +174,7 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.json();
+                return response.text();
             })
             .then(data => {
                 messageDiv.textContent = 'Thank you for your purchase! Your tickets are being processed.';
