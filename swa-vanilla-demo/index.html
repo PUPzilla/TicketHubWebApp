@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Purchase</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-md mx-auto bg-white rounded p-6 shadow-md">
+        <h1 class="text-2xl font-bold mb-4">Purchase Tickets</h1>
+        <form id="ticketForm">
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="quantity" class="block text-gray-700 text-sm font-bold mb-2">Quantity</label>
+                <input 
+                type="number" 
+                id="quantity" 
+                name="quantity" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="firstName" class="block text-gray-700 text-sm font-bold mb-2">First Name</label>
+                <input 
+                type="text" 
+                id="firstName" 
+                name="firstName" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="lastName" class="block text-gray-700 text-sm font-bold mb-2">Last Name</label>
+                <input 
+                type="text" 
+                id="lastName" 
+                name="lastName" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Phone</label>
+                <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="creditCard" class="block text-gray-700 text-sm font-bold mb-2">Credit Card</label>
+                <input 
+                type="text" 
+                id="creditCard" 
+                name="creditCard" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="expiration" class="block text-gray-700 text-sm font-bold mb-2">Expiration</label>
+                <input 
+                type="text" 
+                id="expiration" 
+                name="expiration" 
+                placeholder="MM/YY"
+                maxlength="5"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required>
+            </div>
+            <div class="mb-4">
+                <label for="securityCode" class="block text-gray-700 text-sm font-bold mb-2">Security Code</label>
+                <input 
+                type="password" 
+                id="securityCode" 
+                name="securityCode" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Address</label>
+                <input 
+                type="text" 
+                id="address" 
+                name="address" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="city" class="block text-gray-700 text-sm font-bold mb-2">City</label>
+                <input 
+                type="text" 
+                id="city" 
+                name="city" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+             <div class="mb-4">
+                <label for="province" class="block text-gray-700 text-sm font-bold mb-2">Province</label>
+                <input 
+                type="text" 
+                id="province" 
+                name="province" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="country" class="block text-gray-700 text-sm font-bold mb-2">Country</label>
+                <input 
+                type="text" 
+                id="country" 
+                name="country" 
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Purchase</button>
+        </form>
+        <div id="message" class="mt-4"></div>
+    </div>
+    <script>
+        const form = document.getElementById('ticketForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let expiration = document.getElementById('expiration').value.trim();
+
+            // Basic validation and formatting
+            if (!/^\d{2}\/\d{2}$/.test(expiration)) {
+                document.getElementById('message').textContent = 'Error: Expiration date must be in MM/YY format.';
+                return; // Stop submission
+            }
+
+            const formData = {
+                email: document.getElementById('email').value,
+                quantity: parseInt(document.getElementById('quantity').value),
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                phone: document.getElementById('phone').value,
+                creditCard: document.getElementById('creditCard').value,
+                expiration: expiration, // Use the formatted expiration
+                securityCode: document.getElementById('securityCode').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                province: document.getElementById('province').value,
+                country: document.getElementById('country').value,
+            };
+
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = 'Processing your order...';
+
+            fetch('YOUR_API_ENDPOINT', { // Replace with your API endpoint
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                messageDiv.textContent = 'Thank you for your purchase! Your tickets are being processed.';
+                form.reset();
+            })
+            .catch(error => {
+                messageDiv.textContent = 'Error: ' + error.message + '. Please try again.';
+                console.error('Fetch error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
