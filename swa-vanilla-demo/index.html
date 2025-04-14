@@ -144,7 +144,7 @@
             const messageDiv = document.getElementById('message');
             messageDiv.textContent = 'Processing your order...';
 
-            fetch('YOUR_API_ENDPOINT', { // Replace with your API endpoint
+            fetch('https://assignment3-ticket-hub-eue7dfdgggbneqa2.canadacentral-01.azurewebsites.net/api/TicketPurchase', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
